@@ -1,0 +1,2 @@
+# MAGIC %sql
+# MAGIC SELECT * FROM weather_catalog.weather_schema.weather_telangana LIMIT 10;
