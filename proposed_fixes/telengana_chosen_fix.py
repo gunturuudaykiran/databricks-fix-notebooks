@@ -1,2 +1,2 @@
-%sql
-SELECT * FROM weather_catalog.weather_schema.weather_telangana LIMIT 10;
+df = spark.table("weather_catalog.weather_schema.weather_telangana").limit(10)
+display(df)
