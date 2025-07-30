@@ -1,1 +1,2 @@
-spark.sql("SELECT * FROM weather_catalog.weather_schema.weather_telangana LIMIT 10")
+%sql
+SELECT * FROM weather_catalog.weather_schema.weather_telangana LIMIT 10;
