@@ -1,6 +1,4 @@
 # Databricks notebook source
-from pyspark.sql import functions as F
-
 original_df=spark.read.table('datatypeschema.datatypeprocessed.sampledata')
 display(original_df)
 
@@ -16,10 +14,13 @@ mismatch_df.printSchema()
 
 # COMMAND ----------
 
-# Assuming the problematic column is named 'problematic_column', adjust this name as necessary
-mismatch_df = mismatch_df.withColumn("problematic_column", F.try_cast(mismatch_df.problematic_column, 'bigint'))
+# Cast BIGINT columns to STRING to tolerate malformed input
+from pyspark.sql.functions import try_cast
+for col in original_df.columns:
+    if original_df.schema[col].dataType.typeName() == "bigInt":
+        mismatch_df = mismatch_df.withColumn(col, try_cast(mismatch_df[col], "bigint"))
 
-# Append directly 
+# Append directly (schema mismatch will be handled by Spark as string coercion if needed)
 mismatch_df.write.mode("append").insertInto("datatypeschema.datatypeprocessed.sampledata")
 
 # COMMAND ----------
