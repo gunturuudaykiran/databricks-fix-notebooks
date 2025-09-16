@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %sql
-# MAGIC SELECT * FROM weather_catalog.weather_schema.weather_karnataka LIMIT 10;
+# MAGIC SELECT * FROM weather_catalog.weather_schema.weather_karnataka LIMIT 5;
 
 # COMMAND ----------
 
